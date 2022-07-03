@@ -57,6 +57,7 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <NoWarn>$(NoWarn);NU1702</NoWarn>
     <PackageCertificateThumbprint>5234363CFAA93967FAD2FBCAA7F74F1D4D58C69E</PackageCertificateThumbprint>
+    <EntryPointProjectUniqueName>..\DotnetWpfApp\DotnetWpfApp.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -76,5 +77,8 @@
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotnetWpfApp\DotnetWpfApp.csproj" />
   </ItemGroup>
 </Project>
