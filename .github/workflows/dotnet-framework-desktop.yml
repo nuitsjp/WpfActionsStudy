@@ -36,7 +36,7 @@
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
 
-name: .NET Desktop
+name: .NET Framework Desktop
 
 on:
   push:
@@ -56,10 +56,10 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: Source\DotnetWpfApp\DotnetWpfApp.sln
-      Test_Project_Path: Source\DotnetWpfApp\DotnetWpfApp.Test\DotnetWpfApp.Test.csproj
-      Wap_Project_Directory: Source\DotnetWpfApp\DotnetWpfApp.Package
-      Wap_Project_Path: Source\DotnetWpfApp\DotnetWpfApp.Package\DotnetWpfApp.Package.wapproj
+      Solution_Name: Source\FrameworkWpfApp\FrameworkWpfApp.sln
+      Test_Project_Path: Source\FrameworkWpfApp\FrameworkWpfApp.Test\FrameworkWpfApp.Test.csproj
+      Wap_Project_Directory: Source\FrameworkWpfApp\FrameworkWpfApp.Package
+      Wap_Project_Path: Source\FrameworkWpfApp\FrameworkWpfApp.Package\FrameworkWpfApp.Package.wapproj
 
     steps:
     - name: Checkout
@@ -68,10 +68,10 @@ jobs:
         fetch-depth: 0
 
     # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
+    # - name: Install .NET Core
+    #   uses: actions/setup-dotnet@v2
+    #   with:
+    #     dotnet-version: 6.0.x
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
