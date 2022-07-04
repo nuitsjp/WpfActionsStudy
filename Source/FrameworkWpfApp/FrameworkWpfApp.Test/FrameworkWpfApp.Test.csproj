@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
