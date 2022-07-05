@@ -57,7 +57,7 @@ jobs:
 
     env:
       Solution_Name: Source\FrameworkWpfApp\FrameworkWpfApp.sln
-      Test_Project_Path: Source\FrameworkWpfApp\FrameworkWpfApp.Test\FrameworkWpfApp.Test.csproj
+      Test_Project_Path: Source\FrameworkWpfApp\FrameworkWpfApp.Test\Scenario\Scenario.csproj
       Wap_Project_Directory: Source\FrameworkWpfApp\FrameworkWpfApp.Package
       Wap_Project_Path: Source\FrameworkWpfApp\FrameworkWpfApp.Package\FrameworkWpfApp.Package.wapproj
 
