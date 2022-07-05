@@ -67,11 +67,12 @@ jobs:
       with:
         fetch-depth: 0
 
+    # self-hostedにはインストール済みのため、ステップを取り除く
     # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
+    # - name: Install .NET Core
+    #   uses: actions/setup-dotnet@v2
+    #   with:
+    #     dotnet-version: 6.0.x
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
