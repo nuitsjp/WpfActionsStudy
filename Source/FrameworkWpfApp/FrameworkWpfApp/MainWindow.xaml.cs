@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace FrameworkWpfApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window
     {
