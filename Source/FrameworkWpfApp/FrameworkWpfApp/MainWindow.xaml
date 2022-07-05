@@ -4,13 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrameworkWpfApp"
-        xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml" 
         x:Class="FrameworkWpfApp.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-        <c1:C1FlexGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
     </Grid>
 </Window>

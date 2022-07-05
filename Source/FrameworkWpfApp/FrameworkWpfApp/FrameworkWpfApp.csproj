@@ -9,15 +9,4 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="C1.WPF.4.6.2">
-      <HintPath>..\..\..\..\..\Program Files (x86)\ComponentOne\WPF Edition\bin\v462\C1.WPF.4.6.2.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.WPF.FlexGrid.4.6.2">
-      <HintPath>..\..\..\..\..\Program Files (x86)\ComponentOne\WPF Edition\bin\v462\C1.WPF.FlexGrid.4.6.2.dll</HintPath>
-    </Reference>
-    <Reference Include="ReachFramework" />
-    <Reference Include="System.Printing" />
-  </ItemGroup>
-
 </Project>
