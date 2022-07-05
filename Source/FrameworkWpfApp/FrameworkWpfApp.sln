@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Driver.InTarget", "Framewor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworkWpfApp.Test", "FrameworkWpfApp.Test", "{8CCD1384-6759-499E-8C1B-6206AE11B6F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{51E88F8D-7594-4771-B825-364DBE8BAA82}"
+	ProjectSection(SolutionItems) = preProject
+		..\NuGet.config = ..\NuGet.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

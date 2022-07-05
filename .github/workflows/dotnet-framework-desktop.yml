@@ -87,6 +87,12 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
+    - name: Setup Nuget
+      uses: Nuget/setup-nuget@v1.0.5
+
+    - name: Restore nuget packages
+      run: nuget restore $env:Solution_Name -ConfigFile Source\NuGet.config
+
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Decode the pfx
       run: |
