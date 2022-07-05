@@ -7,9 +7,18 @@
         xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml" x:Class="FrameworkWpfApp.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <c1:C1ComboBox Height="23" Width="120"/>
+        <c1:C1ComboBox Height="23" Width="120"
+                       ItemsSource="{Binding Colors}"
+                       SelectedItem="{Binding SelectedColors, Mode=TwoWay}"/>
 
-    </Grid>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="SelectedColors: "/>
+            <TextBlock Text="{Binding SelectedColors}"/>
+        </StackPanel>
+    </StackPanel>
 </Window>
