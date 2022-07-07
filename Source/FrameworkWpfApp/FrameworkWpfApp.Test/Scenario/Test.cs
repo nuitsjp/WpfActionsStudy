@@ -19,7 +19,6 @@ namespace Scenario
         [Test]
         public void TestMethod1()
         {
-            Assert.Fail("明示的なエラー");
         }
     }
 }
