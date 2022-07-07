@@ -1,6 +1,8 @@
-﻿using Codeer.Friendly.Windows;
+﻿using System;
+using Codeer.Friendly.Windows;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace Driver.TestController
 {
@@ -9,7 +11,13 @@ namespace Driver.TestController
         public static WindowsAppFriend Start()
         {
             //target path
-            var targetPath = new FileInfo(@"..\..\..\..\FrameworkWpfApp\bin\Debug\FrameworkWpfApp.exe").FullName;
+            var current = Assembly.GetExecutingAssembly().Location;
+            var repositoryPath = current.Substring(0, current.IndexOf("Source", StringComparison.Ordinal));
+            var targetPath = Path.Combine(repositoryPath, @"Source\FrameworkWpfApp\FrameworkWpfApp\bin\Debug\FrameworkWpfApp.exe");
+            if (File.Exists(targetPath) is false)
+            {
+                throw new FileNotFoundException(targetPath);
+            }
             var info = new ProcessStartInfo(targetPath) { WorkingDirectory = Path.GetDirectoryName(targetPath) };
             var app = new WindowsAppFriend(Process.Start(info));
             app.ResetTimeout();
