@@ -85,6 +85,13 @@ jobs:
     - name: Install NUnit.ConsoleRunner
       run: nuget install NUnit.ConsoleRunner -Version 3.13.0 -DirectDownload -OutputDirectory .
         
+    # Decode the base 64 encoded pfx and save the Signing_Certificate
+    - name: Decode the pfx
+      run: |
+        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
+        $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
+        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
+
     # Execute all unit tests in the solution
     - name: Restore Debug
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=Debug /p:RestorePackagesConfig=true
@@ -100,13 +107,6 @@ jobs:
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /p:RestorePackagesConfig=true
       env:
         Configuration: ${{ matrix.configuration }}
-
-    # Decode the base 64 encoded pfx and save the Signing_Certificate
-    - name: Decode the pfx
-      run: |
-        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-        $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
-        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
