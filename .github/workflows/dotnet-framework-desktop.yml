@@ -97,7 +97,7 @@ jobs:
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=Debug /p:RestorePackagesConfig=true
 
     - name: Rebuild Debug
-      run: msbuild $env:Solution_Name /t:Rebuild /p:Configuration=Debug
+      run: msbuild $env:Solution_Name /t:Rebuild /p:Configuration=Debug /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
 
     - name: Run UnitTests
       run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  $env:Test_Dll_Path
