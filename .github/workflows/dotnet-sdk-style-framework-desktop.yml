@@ -49,10 +49,10 @@ jobs:
       run: dotnet restore $env:Test_Project_Path -r x64
 
     - name: Debug Build Target
-      run: dotnet restore $env:Target_Project_Path -c Debug -r x64
+      run: dotnet build $env:Target_Project_Path -c Debug -r x64
 
     - name: Debug Build Test
-      run: dotnet restore $env:Test_Project_Path -c Debug -r x64
+      run: dotnet build $env:Test_Project_Path -c Debug -r x64
 
     - name: Run UnitTests
       run: dotnet test $env:Test_Project_Path -r x64
