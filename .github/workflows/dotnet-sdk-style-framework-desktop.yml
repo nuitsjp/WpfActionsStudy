@@ -49,10 +49,10 @@ jobs:
       run: dotnet restore $env:Test_Project_Path -r x64
 
     - name: Debug Build Target
-      run: dotnet build $env:Target_Project_Path -c Debug -r x64 -o .\bin\Debug\net48
+      run: dotnet build $env:Target_Project_Path -c Debug -r x64 -o Source\FrameworkSdkStyleWpfApp\FrameworkSdkStyleWpfApp\bin\Debug\net48
 
     - name: Debug Build Test
-      run: dotnet build $env:Test_Project_Path -c Debug -r x64 -o .\bin\Debug\net48
+      run: dotnet build $env:Test_Project_Path -c Debug -r x64 -o Source\FrameworkSdkStyleWpfApp\FrameworkSdkStyleWpfApp.Test\Scenario\bin\Debug\net48
 
     - name: Run UnitTests
       run: dotnet test $env:Test_Project_Path -r x64
