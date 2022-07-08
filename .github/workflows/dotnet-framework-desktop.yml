@@ -39,8 +39,8 @@
 name: .NET Framework Desktop
 
 on:
-  push:
-    branches: [ "main" ]
+  # push:
+  #   branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
