@@ -14,7 +14,7 @@ jobs:
       matrix:
         configuration: [Release]
 
-    runs-on: ubuntu-latest  # For a list of available runner types, refer to
+    runs-on: self-hosted  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
@@ -26,6 +26,12 @@ jobs:
       mascot: Mona
 
     steps:
+      - name: Display hello world pwsh
+        run: |
+          write-host "hello world pwsh"
+          Write-Host $pwd
+          $PSVersionTable
+        shell: pwsh
       - uses: cardinalby/export-env-action@v1
         with:
           envFile: 'constants.env'    
