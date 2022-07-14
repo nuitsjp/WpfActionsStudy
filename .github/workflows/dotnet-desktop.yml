@@ -38,7 +38,7 @@
 
 name: .NET Desktop
 
-on:
+# on:
   # push:
   #   branches: [ "main" ]
   # pull_request:

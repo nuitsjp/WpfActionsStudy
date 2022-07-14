@@ -1,8 +1,7 @@
 name: SDK Style .NET Framework Desktop
 
 on:
-  # pull_request:
-  #   branches: [ "main" ]
+  workflow_call:
 
 jobs:
 
