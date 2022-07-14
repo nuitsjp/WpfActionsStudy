@@ -5,5 +5,5 @@ on:
     branches: [ "main" ]
 
 jobs:
-  caller:
+  call-workflow:
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
