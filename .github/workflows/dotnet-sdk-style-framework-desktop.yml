@@ -26,21 +26,22 @@ jobs:
       mascot: Mona
 
     steps:
-      - name: Display hello world pwsh
-        run: |
-          write-host "hello world pwsh"
-          Write-Host $pwd
-          Get-ChildItem
-          $PSVersionTable
-        shell: pwsh
-      - uses: cardinalby/export-env-action@v1
-        with:
-          envFile: 'constants.env'    
-          expand: 'true'
-    # - name: Checkout
-    #   uses: actions/checkout@v3
-    #   with:
-    #     fetch-depth: 0
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Display hello world pwsh
+      run: |
+        write-host "hello world pwsh"
+        Write-Host $pwd
+        Get-ChildItem
+        $PSVersionTable
+      shell: pwsh
+    - uses: cardinalby/export-env-action@v1
+      with:
+        envFile: 'constants.env'    
+        expand: 'true'
 
     # # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     # - name: Setup MSBuild.exe
