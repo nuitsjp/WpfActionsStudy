@@ -23,10 +23,11 @@ jobs:
       with:
         fetch-depth: 0
 
-    - uses: cardinalby/export-env-action@v1
+    - name: Load env from file
+      uses: cardinalby/export-env-action@v2
+      id: env
       with:
         envFile: '.github/workflows/constants.env'
-        expand: 'true'
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
@@ -42,19 +43,19 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Restore Target
-      run: dotnet restore $env:Target_Project_Path
+      run: dotnet restore ${{ steps.env.outputs.Target_Project_Path }}
 
     - name: Restore Test
-      run: dotnet restore $env:Test_Project_Path
+      run: dotnet restore ${{ steps.env.outputs.Target_Project_Path }}
 
     - name: Debug Build Target
-      run: dotnet build $env:Target_Project_Path -c Debug
+      run: dotnet build ${{ steps.env.outputs.Target_Project_Path }} -c Debug
 
     - name: Debug Build Test
-      run: dotnet build $env:Test_Project_Path -c Debug
+      run: dotnet build ${{ steps.env.outputs.Target_Project_Path }} -c Debug
 
     - name: Run UnitTests
-      run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  $env:Test_Dll_Path
+      run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  ${{ steps.env.outputs.Test_Dll_Path }}
 
         
     # Decode the base 64 encoded pfx and save the Signing_Certificate
