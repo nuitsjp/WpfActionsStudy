@@ -38,11 +38,8 @@
 
 name: .NET Desktop
 
-# on:
-  # push:
-  #   branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
+on:
+  workflow_call:
 
 jobs:
 

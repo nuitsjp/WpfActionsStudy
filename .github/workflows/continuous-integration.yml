@@ -5,5 +5,10 @@ on:
     branches: [ "main" ]
 
 jobs:
+  setup:
+    runs-on: self-hosted
+    steps:
+      - run: echo "HELLO MAIN"
+
   call-workflow:
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
