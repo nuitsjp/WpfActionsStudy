@@ -30,6 +30,7 @@ jobs:
         run: |
           write-host "hello world pwsh"
           Write-Host $pwd
+          Get-ChildItem
           $PSVersionTable
         shell: pwsh
       - uses: cardinalby/export-env-action@v1
