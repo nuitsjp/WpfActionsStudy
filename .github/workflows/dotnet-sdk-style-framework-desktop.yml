@@ -26,11 +26,10 @@ jobs:
       mascot: Mona
 
     steps:
-      - run: ls
-      # - uses: cardinalby/export-env-action@v1
-      #   with:
-      #     envFile: './constants.env'    
-      #     expand: 'true'
+      - uses: cardinalby/export-env-action@v1
+        with:
+          envFile: './constants.env'    
+          expand: 'true'
     # - name: Checkout
     #   uses: actions/checkout@v3
     #   with:
