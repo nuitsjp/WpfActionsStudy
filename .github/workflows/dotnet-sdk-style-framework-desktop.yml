@@ -12,8 +12,7 @@ jobs:
       matrix:
         configuration: [Release]
 
-    runs-on: self-hosted  # For a list of available runner types, refer to
-                          # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on: self-hosted
 
     steps:
     - name: Checkout
