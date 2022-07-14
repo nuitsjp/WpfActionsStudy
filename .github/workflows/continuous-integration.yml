@@ -11,4 +11,5 @@ jobs:
       - run: echo "HELLO MAIN"
 
   call-workflow:
+    needs: [setup]
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
