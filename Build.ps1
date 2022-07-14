@@ -1,3 +1,5 @@
+
+
 $Solution_Name = "Source\FramwworkWpfApp\FramwworkWpfApp.sln"
 $Wap_Project_Path = "Source\FramwworkWpfApp\FramwworkWpfApp.Package\FramwworkWpfApp.Package.wapproj"
 $Appx_Package_Build_Mode = "StoreUpload"
