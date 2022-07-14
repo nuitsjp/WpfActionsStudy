@@ -1,0 +1,9 @@
+name: 継続的インテグレーション
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  Reuse:
+    uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
