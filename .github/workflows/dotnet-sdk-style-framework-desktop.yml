@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: cardinalby/export-env-action@v1
         with:
-          envFile: './constants.env'    
+          envFile: 'constants.env'    
           expand: 'true'
     # - name: Checkout
     #   uses: actions/checkout@v3
