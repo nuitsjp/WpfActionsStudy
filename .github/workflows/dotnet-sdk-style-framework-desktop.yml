@@ -11,13 +11,7 @@ on:
             type: boolean
 
 jobs:
-
   build:
-
-    # strategy:
-    #   matrix:
-    #     configuration: [Release]
-
     runs-on: self-hosted
 
     strategy:
@@ -93,6 +87,7 @@ jobs:
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
+      if: ${{ inputs.isPublish == true }}
       uses: actions/upload-artifact@v3
       with:
         name: MSIX Package
