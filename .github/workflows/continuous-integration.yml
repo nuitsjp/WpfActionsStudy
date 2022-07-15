@@ -35,8 +35,6 @@ jobs:
     secrets: inherit
 
   dotnet-desktop: 
-    # SDKスタイルの方だけを対象にする。
-    # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
     needs: setup
     uses: ./.github/workflows/dotnet-desktop.yml
     with:
