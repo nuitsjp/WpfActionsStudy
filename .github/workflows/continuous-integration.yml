@@ -17,8 +17,7 @@ jobs:
       shell: pwsh
 
   ci:
-    needs: list-modules
-
+    needs: setup
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
       modules: ${{ fromJson(needs.list-modules.outputs.matrix) }}
