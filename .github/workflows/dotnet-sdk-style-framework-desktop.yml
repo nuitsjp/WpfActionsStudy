@@ -19,7 +19,7 @@ jobs:
 
     strategy:
         matrix:
-            manifest: ${{ fromJson(inputs.modules) }}
+            modules: ${{ fromJson(inputs.modules) }}
 
     steps:
     - name: Checkout
@@ -30,7 +30,7 @@ jobs:
     - name: Load env from file
       uses: cardinalby/export-env-action@v2
       with:
-        envFile: '.github/workflows/config/${{ inputs.module }}.env'
+        envFile: '.github/workflows/config/${{ matrix.modules }}.env'
         expand: 'true'
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
