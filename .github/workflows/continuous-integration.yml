@@ -18,7 +18,8 @@ jobs:
 
   ci:
     needs: setup
-    uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
-    with:
-      modules: ${{ fromJson(needs.setup.outputs.matrix) }}
-      isPublish : false
+    # uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
+    # with:
+    #   modules: ${{ fromJson(needs.setup.outputs.matrix) }}
+    #   isPublish : false
+    uses: ./.github/workflows/dotnet-framework-desktop.yml
