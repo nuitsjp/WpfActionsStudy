@@ -6,9 +6,6 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
-
-    steps:
-      uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
-      with:
-        module: 'FrameworkSdkStyleWpfApp'
+    uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
+    with:
+      module: 'FrameworkSdkStyleWpfApp'
