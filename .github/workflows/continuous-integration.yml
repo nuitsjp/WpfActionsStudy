@@ -2,7 +2,8 @@ name: 継続的インテグレーション
 
 on:
   pull_request:
-    branches: [ "main" ]
+    # branches: [ "main" ]
+    branches: [ "dummy" ]
 
 jobs:
   list-modules:

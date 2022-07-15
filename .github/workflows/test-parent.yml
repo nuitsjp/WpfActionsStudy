@@ -1,0 +1,11 @@
+name: Test Reusing Workflow
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  parent:
+    runs-on: self-hosted
+      steps:
+      - uses: ./.github/workflows/test-child
