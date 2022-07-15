@@ -40,6 +40,13 @@ name: .NET Desktop
 
 on:
   workflow_call:
+    inputs:
+      modules:
+        required: true
+        type: string
+      isPublish:
+        required: true
+        type: boolean
 
 jobs:
 
