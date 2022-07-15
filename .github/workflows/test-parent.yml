@@ -6,4 +6,9 @@ on:
 
 jobs:
   call-workflow-passing-data:
+    runs-on: self-hosted
+
+    steps:
+    - run: echo 'Hello, World!'
+
     uses: ./.github/workflows/test-child.yml
