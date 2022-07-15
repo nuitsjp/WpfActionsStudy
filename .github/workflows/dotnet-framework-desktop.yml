@@ -40,6 +40,9 @@ name: .NET Framework Desktop
 
 on:
   workflow_call:
+    secrets:
+      Base64_Encoded_Pfx:
+        required: true
 
 jobs:
 

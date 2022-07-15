@@ -23,3 +23,4 @@ jobs:
     #   modules: ${{ fromJson(needs.setup.outputs.matrix) }}
     #   isPublish : false
     uses: ./.github/workflows/dotnet-framework-desktop.yml
+    secrets: inherit
