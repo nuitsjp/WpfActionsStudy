@@ -18,8 +18,7 @@ jobs:
 
   setup:
     needs: list-modules
-    runs-on: self-hosted
 
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
-      module: ["DotnetWpfApp.env","FrameworkSdkStyleWpfApp.env"]
+      modules: ["DotnetWpfApp.env","FrameworkSdkStyleWpfApp.env"]
