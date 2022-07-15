@@ -16,13 +16,12 @@ jobs:
         Write-Host "::set-output name=matrix::`"[$configs]`""
       shell: pwsh
 
-  ci:
+  framework-desktop: 
+    # SDKスタイルの方だけを対象にする。
+    # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
     needs: setup
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.matrix) }}
       isPublish : false
     secrets: inherit
-
-    # uses: ./.github/workflows/dotnet-framework-desktop.yml
-    # secrets: inherit

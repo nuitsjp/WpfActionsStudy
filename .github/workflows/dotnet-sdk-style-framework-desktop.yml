@@ -11,9 +11,6 @@ on:
         type: boolean
 
 jobs:
-  test:
-    uses: ./.github/workflows/test.yml
-    
   build:
     runs-on: self-hosted
 
