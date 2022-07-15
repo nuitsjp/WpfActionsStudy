@@ -6,10 +6,6 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        module: [constants]
-
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
-      module: '${{ matrix.module }}'
+      module: 'constants'
