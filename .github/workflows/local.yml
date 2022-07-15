@@ -1,0 +1,19 @@
+name: manifests
+on: [push, pull_request]
+jobs:
+  list-manifests:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: set-matrix
+        run: echo "::set-output name=matrix::$(ls .github/workflows/config/*.env | jq -R -s -c 'split("\n")[:-1]')"
+  check:
+    needs: list-manifests
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+            manifest: ${{ fromJson(needs.list-manifests.outputs.matrix) }}
+    steps:
+      - run: echo ${{ martix.manifest }}
