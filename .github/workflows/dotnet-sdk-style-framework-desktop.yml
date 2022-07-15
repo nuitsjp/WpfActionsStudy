@@ -11,7 +11,26 @@ on:
         type: boolean
 
 jobs:
+  load:
+    runs-on: self-hosted
+
+    strategy:
+        matrix:
+            modules: ${{ fromJson(inputs.modules) }}
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Load env from file
+      uses: cardinalby/export-env-action@v2
+      with:
+        envFile: '.github/workflows/config/${{ matrix.modules }}'
+        expand: 'true'
   build:
+    needs: load
+
     runs-on: self-hosted
 
     strategy:
