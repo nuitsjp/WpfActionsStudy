@@ -17,7 +17,7 @@ jobs:
         $confs = (Get-ChildItem .github/workflows/config/*.env | Select-Object -ExpandProperty "Name" | % {"`"$_`""}) -Join ","
         Write-Host $confs
         Write-Host "::set-output name=matrix::[$confs]"
-      shell:pwsh
+      shell: pwsh
 
   check:
     needs: list-manifests
