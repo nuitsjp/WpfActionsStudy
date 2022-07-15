@@ -27,8 +27,6 @@ jobs:
         fetch-depth: 0
 
   build:
-    needs: load
-
     runs-on: self-hosted
 
     strategy:
