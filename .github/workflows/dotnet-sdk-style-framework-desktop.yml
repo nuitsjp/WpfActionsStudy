@@ -11,12 +11,8 @@ on:
         type: boolean
 
 jobs:
-  setup:
+  build:
     runs-on: self-hosted
-
-    strategy:
-        matrix:
-            modules: ${{ fromJson(inputs.modules) }}
 
     steps:
     - name: Checkout
@@ -27,24 +23,8 @@ jobs:
     - name: Load env from file
       uses: cardinalby/export-env-action@v2
       with:
-        envFile: '.github/workflows/config/${{ matrix.modules }}'
+        envFile: '.github/workflows/config/framework/${{ matrix.modules }}'
         expand: 'true'
-
-  build:
-    needs: setup
-    runs-on: self-hosted
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-    # - name: Load env from file
-    #   uses: cardinalby/export-env-action@v2
-    #   with:
-    #     envFile: '.github/workflows/config/${{ matrix.modules }}'
-    #     expand: 'true'
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
