@@ -5,15 +5,5 @@ on:
     branches: [ "main" ]
 
 jobs:
-  parent:
-    runs-on: self-hosted
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-  uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
-  with:
-    modules: '\"[\"DotnetWpfApp.env\"]\"'
-    isPublish : false
+  call-workflow-passing-data:
+    uses: ./.github/workflows/test-child.yml
