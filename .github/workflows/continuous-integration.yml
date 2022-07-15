@@ -5,13 +5,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  setup:
-    runs-on: self-hosted
-    steps:
-      - run: echo "HELLO MAIN"
+  build:
+    strategy:
+      matrix:
+        module: [constants]
 
-  call-workflow:
-    needs: [setup]
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
-      module: 'constants'
+      module: '${{ matrix.module }}'
