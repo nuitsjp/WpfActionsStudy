@@ -16,9 +16,6 @@ jobs:
         Write-Host "::set-output name=matrix::`"[$configs]`""
       shell: pwsh
 
-  setup:
-    needs: list-modules
-
-    uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
-    with:
-      modules: ${{ fromJson(needs.list-modules.outputs.matrix) }}
+  uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
+  with:
+    modules: ${{ fromJson(needs.list-modules.outputs.matrix) }}
