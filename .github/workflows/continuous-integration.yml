@@ -12,7 +12,7 @@ jobs:
     steps:
     - id: set-matrix
       run: |
-        $configs = (Get-ChildItem .github/workflows/config/*.env | Select-Object -ExpandProperty "Name" | % {"\`"$_\`""}) -Join ","
+        $configs = (Get-ChildItem .github/workflows/config/framework/*.env | Select-Object -ExpandProperty "Name" | % {"\`"$_\`""}) -Join ","
         Write-Host "::set-output name=matrix::`"[$configs]`""
       shell: pwsh
 
