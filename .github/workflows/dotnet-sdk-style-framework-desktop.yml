@@ -11,7 +11,7 @@ on:
         type: boolean
 
 jobs:
-  buildx:
+  setup:
     runs-on: self-hosted
 
     strategy:
@@ -25,6 +25,7 @@ jobs:
         fetch-depth: 0
 
   build:
+    needs: setup
     runs-on: self-hosted
 
     strategy:
