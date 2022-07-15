@@ -88,5 +88,5 @@ jobs:
       if: inputs.isPublish
       uses: actions/upload-artifact@v3
       with:
-        name: $env:PackageName
+        name: ${{ env.PackageName }}
         path: ${{ env.PackageProjectDirectory }}\AppPackages
