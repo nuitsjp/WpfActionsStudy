@@ -30,7 +30,7 @@ jobs:
     - name: Load env from file
       uses: cardinalby/export-env-action@v2
       with:
-        envFile: '.github/workflows/config/${{ matrix.modules }}.env'
+        envFile: '.github/workflows/config/${{ matrix.modules }}'
         expand: 'true'
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
