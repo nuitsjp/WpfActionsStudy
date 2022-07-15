@@ -2,11 +2,27 @@ name: 継続的インテグレーション
 
 on:
   pull_request:
-    # branches: [ "main" ]
-    branches: [ "foo" ]
+    branches: [ "main" ]
 
 jobs:
+  list-modules:
+    runs-on: self-hosted
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+    - id: set-matrix
+      run: |
+        $configs = (Get-ChildItem .github/workflows/config/*.env | Select-Object -ExpandProperty "Name" | % {"`"$_`""}) -Join ","
+        Write-Host "::set-output name=matrix::[$configs]"
+      shell: pwsh
+
   build:
+    needs: list-modules
+    runs-on: self-hosted
+    strategy:
+        matrix:
+            manifest: ${{ fromJson(needs.list-modules.outputs.matrix) }}
+
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
-      module: 'FrameworkSdkStyleWpfApp'
+      module: ${{ matrix.manifest }}
