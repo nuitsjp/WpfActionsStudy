@@ -61,6 +61,9 @@ jobs:
     #   run: dotnet build $env:TestProject -c Debug
 
     # Create the app package by building and packaging the Windows Application Packaging project
+    - name: Restore the application
+      run: msbuild $env:Solution /t:Restore /p:RestorePackagesConfig=true
+
     - name: Create the app package
       run: msbuild $env:PackageProject /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
       env:
