@@ -67,7 +67,7 @@ jobs:
         Configuration: Debug
 
     - name: Create the app package
-      run: msbuild $env:PackageProject /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      run: msbuild $env:PackageProject /p:Configuration=$env:Configuration
       env:
         Appx_Bundle: Always
         Appx_Bundle_Platforms: x86|x64
