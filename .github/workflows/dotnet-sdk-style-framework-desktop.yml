@@ -44,37 +44,37 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Restore Target
-      run: dotnet restore $env:Target_Project_Path
+      run: dotnet restore $env:WpfProject
 
     - name: Restore Test
-      run: dotnet restore $env:Test_Project_Path
+      run: dotnet restore $env:TestProject
 
     - name: Debug Build Target
-      run: dotnet build $env:Target_Project_Path -c Debug
+      run: dotnet build $env:WpfProject -c Debug
 
     - name: Debug Build Test
-      run: dotnet build $env:Test_Project_Path -c Debug
+      run: dotnet build $env:TestProject -c Debug
 
     - name: Run UnitTests
-      run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  $env:Test_Dll_Path
+      run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  $env:TestProjectDll
 
         
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Decode the pfx
       run: |
         $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-        $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
+        $certificatePath = Join-Path -Path $env:PackageProjectDirectory -ChildPath GitHubActionsWorkflow.pfx
         [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /p:RestorePackagesConfig=true
+      run: msbuild $env:Solution /t:Restore /p:Configuration=$env:Configuration /p:RestorePackagesConfig=true
       env:
         Configuration: Release
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      run: msbuild $env:PackageProject /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
       env:
         Appx_Bundle: Always
         Appx_Bundle_Platforms: x86|x64
@@ -83,7 +83,7 @@ jobs:
 
     # Remove the pfx
     - name: Remove the pfx
-      run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
+      run: Remove-Item -path $env:PackageProjectDirectory\GitHubActionsWorkflow.pfx
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
@@ -91,4 +91,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: MSIX Package
-        path: ${{ env.Wap_Project_Directory }}\AppPackages
+        path: ${{ env.PackageProjectDirectory }}\AppPackages
