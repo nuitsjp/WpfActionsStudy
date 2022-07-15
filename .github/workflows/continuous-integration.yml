@@ -19,10 +19,7 @@ jobs:
   setup:
     needs: list-modules
     runs-on: self-hosted
-    strategy:
-        matrix:
-            manifest: ${{ fromJson(needs.list-modules.outputs.matrix) }}
 
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
-      module: ${{ matrix.manifest }}
+      module: ["DotnetWpfApp.env","FrameworkSdkStyleWpfApp.env"]
