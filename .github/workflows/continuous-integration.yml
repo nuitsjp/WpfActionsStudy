@@ -21,4 +21,4 @@ jobs:
 
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
-      modules: ${{ fromJson(needs.list-modules.outputs.matrix) }}
+      modules: "${{ fromJson(needs.list-modules.outputs.matrix) }}"
