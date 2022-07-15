@@ -10,6 +10,11 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
     - id: set-matrix
       run: |
         $configs = (Get-ChildItem .github/workflows/config/framework/*.env | Select-Object -ExpandProperty "Name" | % {"\`"$_\`""}) -Join ","
