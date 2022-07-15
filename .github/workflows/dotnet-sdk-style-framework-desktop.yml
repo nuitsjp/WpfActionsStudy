@@ -3,14 +3,17 @@ name: SDK Style .NET Framework Desktop
 on:
   workflow_call:
     inputs:
-          modules:
-            required: true
-            type: string
-          isPublish:
-            required: true
-            type: boolean
+      modules:
+        required: true
+        type: string
+      isPublish:
+        required: true
+        type: boolean
 
 jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+    
   build:
     runs-on: self-hosted
 
