@@ -2,11 +2,10 @@ name: 継続的インテグレーション
 
 on:
   pull_request:
-    # branches: [ "main" ]
-    branches: [ "dummy" ]
+    branches: [ "main" ]
 
 jobs:
-  list-modules:
+  setup:
     runs-on: self-hosted
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -17,7 +16,7 @@ jobs:
         Write-Host "::set-output name=matrix::`"[$configs]`""
       shell: pwsh
 
-  setup:
+  ci:
     needs: list-modules
 
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
