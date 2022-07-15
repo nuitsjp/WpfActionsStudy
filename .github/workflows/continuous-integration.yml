@@ -21,4 +21,4 @@ jobs:
 
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
     with:
-      modules: ["DotnetWpfApp.env","FrameworkSdkStyleWpfApp.env"]
+      modules: "[\"DotnetWpfApp.env\",\"FrameworkSdkStyleWpfApp.env\"]"
