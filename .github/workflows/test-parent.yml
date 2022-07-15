@@ -7,5 +7,5 @@ on:
 jobs:
   parent:
     runs-on: self-hosted
-      steps:
-      - uses: ./.github/workflows/test-child
+    steps:
+    - uses: ./.github/workflows/test-child
