@@ -12,8 +12,6 @@ on:
 
 jobs:
   buildx:
-    needs: load
-
     runs-on: self-hosted
 
     strategy:
