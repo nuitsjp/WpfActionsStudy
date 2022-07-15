@@ -85,8 +85,8 @@ jobs:
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
-      if: ${{ inputs.isPublish == true }}
+      if: inputs.isPublish
       uses: actions/upload-artifact@v3
       with:
-        name: MSIX Package
+        name: $env:PackageName
         path: ${{ env.PackageProjectDirectory }}\AppPackages

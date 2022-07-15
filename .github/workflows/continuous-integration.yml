@@ -32,7 +32,7 @@ jobs:
     uses: ./.github/workflows/framework-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.framework-desktops) }}
-      isPublish : false
+      isPublish : true
     secrets: inherit
 
   dotnet-desktop: 
@@ -40,5 +40,5 @@ jobs:
     uses: ./.github/workflows/dotnet-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.dotnet-desktops) }}
-      isPublish : false
+      isPublish : true
     secrets: inherit
