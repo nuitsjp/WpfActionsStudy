@@ -16,7 +16,7 @@ jobs:
         Write-Host "::set-output name=matrix::[$configs]"
       shell: pwsh
 
-  build:
+  setup:
     needs: list-modules
     runs-on: self-hosted
     strategy:
