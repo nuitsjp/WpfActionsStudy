@@ -13,3 +13,5 @@ jobs:
   call-workflow:
     needs: [setup]
     uses: ./.github/workflows/dotnet-sdk-style-framework-desktop.yml
+    with:
+      module: 'constants'

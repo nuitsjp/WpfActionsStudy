@@ -2,6 +2,10 @@ name: SDK Style .NET Framework Desktop
 
 on:
   workflow_call:
+    inputs:
+          module:
+            required: true
+            type: string
 
 jobs:
 
@@ -22,7 +26,7 @@ jobs:
     - name: Load env from file
       uses: cardinalby/export-env-action@v2
       with:
-        envFile: '.github/workflows/constants.env'
+        envFile: '.github/workflows/${{ inputs.module }}.env'
         expand: 'true'
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
