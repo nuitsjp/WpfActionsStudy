@@ -61,7 +61,7 @@ jobs:
         $certificatePath = Join-Path -Path $env:PackageProjectDirectory -ChildPath GitHubActionsWorkflow.pfx
         [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
-    Restore the application to populate the obj folder with RuntimeIdentifiers
+    # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild $env:Solution /t:Restore /p:Configuration=$env:Configuration /p:RestorePackagesConfig=true
       env:
