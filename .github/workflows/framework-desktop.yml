@@ -42,10 +42,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Restore Target
-      run: dotnet restore $env:WpfProject
-
-    - name: Restore Test
-      run: dotnet restore $env:TestProject
+      run: dotnet restore $env:Solution
 
     - name: Debug Build Target
       run: dotnet build $env:WpfProject -c Debug
