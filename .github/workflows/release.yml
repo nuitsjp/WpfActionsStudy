@@ -14,5 +14,12 @@ jobs:
       - name: Set version
         shell: pwsh
         run: |
-          # process.stdout.write('::debug::debug...' + $GITHUB_REF);
-          echo "::debug::Set the Octocat variable"
+          echo "::debug:: GITHUB_REF: $GITHUB_REF"
+          Write-Host "::debug:: GITHUB_REF: $GITHUB_REF"
+          $tag = $source.Substring('refs/tags/'.Length)
+          echo "::debug:: tag: $tag"
+          $moduleName = $tag.Substring(15, $tag.LastIndexOf('/') - 15)
+          echo "::debug:: moduleName: $moduleName"
+          $version = $tag.Substring($tag.LastIndexOf('/') + 1)
+          echo "::debug:: version: $version"
+
