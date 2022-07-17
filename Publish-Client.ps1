@@ -4,7 +4,13 @@ param(
 )
 
 $ChoiceDescriptionType = "System.Management.Automation.Host.ChoiceDescription"
-$ChoiceDescriptionCollectionType = "System.Collections.ObjectModel.Collection``1[[$assembly]]"
+
+function New-ChoiceDescriptionCollection {
+    $typename = "System.Management.Automation.Host.ChoiceDescription"
+    $dummy = New-Object $typename("dummy","dummy")
+    $assembly= $dummy.getType().AssemblyQualifiedName
+    New-Object "System.Collections.ObjectModel.Collection``1[[$assembly]]"
+}
 
 function New-ChoiceDescriptions {
     param (
@@ -12,7 +18,7 @@ function New-ChoiceDescriptions {
         [array] $Labels
     )
 
-    $choices = New-Object $ChoiceDescriptionCollectionType
+    $choices = New-ChoiceDescriptionCollection
     for ($i=0; $i -lt $Labels.Count; $i++) {
         $label = $Labels[$i]
         $choices.add((New-Object $ChoiceDescriptionType("$label(&$($i))", $label)))
@@ -86,7 +92,7 @@ try
 
     $comment = Read-Host "リリースコメントを入力してください。"
 
-    $confirm = New-Object $ChoiceDescriptionCollectionType
+    $confirm = New-ChoiceDescriptionCollection
     $confirm.add((New-Object $ChoiceDescriptionType("いいえ(&N)","リリースを中断します。")))
     $confirm.add((New-Object $ChoiceDescriptionType("はい(&Y)","リリースします。")))
     $answer = $host.ui.PromptForChoice("[下記でリリースします。よろしいですか？]", " - モジュール： $module`r`n - バージョン: $Version`r`n - コメント: $comment", $confirm, 0)
