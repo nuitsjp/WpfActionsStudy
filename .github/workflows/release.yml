@@ -14,5 +14,5 @@ jobs:
       - name: Set version
         shell: pwsh
         run: |
-          process.stdout.write('::debug::debug...' + $GITHUB_REF);
-          Write-Host "::debug::debug $GITHUB_REF"
+          # process.stdout.write('::debug::debug...' + $GITHUB_REF);
+          echo "::debug::Set the Octocat variable"
