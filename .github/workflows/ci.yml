@@ -1,0 +1,44 @@
+name: 継続的インテグレーション
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  setup:
+    runs-on: self-hosted
+    outputs:
+      framework-desktops: ${{ steps.set-matrix.outputs.framework-desktops }}
+      dotnet-desktops: ${{ steps.set-matrix.outputs.dotnet-desktops }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - id: set-matrix
+      run: |
+        $frameworks = (Get-ChildItem .github/workflows/config/framework-desktop/*.env | Select-Object -ExpandProperty "Name" | % {"\`"$_\`""}) -Join ","
+        Write-Host "::set-output name=framework-desktops::`"[$frameworks]`""
+        
+        $dotnets = (Get-ChildItem .github/workflows/config/dotnet-desktop/*.env | Select-Object -ExpandProperty "Name" | % {"\`"$_\`""}) -Join ","
+        Write-Host "::set-output name=dotnet-desktops::`"[$dotnets]`""
+      shell: pwsh
+
+  framework-desktop: 
+    # SDKスタイルの方だけを対象にする。
+    # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
+    needs: setup
+    uses: ./.github/workflows/framework-desktop.yml
+    with:
+      modules: ${{ fromJson(needs.setup.outputs.framework-desktops) }}
+      isPublish : false
+    secrets: inherit
+
+  dotnet-desktop: 
+    needs: setup
+    uses: ./.github/workflows/dotnet-desktop.yml
+    with:
+      modules: ${{ fromJson(needs.setup.outputs.dotnet-desktops) }}
+      isPublish : false
+    secrets: inherit
