@@ -3,6 +3,7 @@
                 "cardinalby",
                 "dotnets",
                 "msix",
-                "pwsh"
+                "pwsh",
+                "wapproj"
         ]
 }
