@@ -3,7 +3,7 @@ name: モジュールリリース
 on:
   push:
     tags:
-      - r*
+      - 'r*'
 
 jobs:
   setup:
