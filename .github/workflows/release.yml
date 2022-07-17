@@ -14,9 +14,9 @@ jobs:
       - name: Set version
         shell: pwsh
         run: |
-          echo "::debug:: GITHUB_REF: $GITHUB_REF"
-          Write-Host "::debug:: GITHUB_REF: $GITHUB_REF"
-          $tag = $source.Substring('refs/tags/'.Length)
+          echo "::debug:: GITHUB_REF: " + $GITHUB_REF
+          Write-Host "::debug:: GITHUB_REF: " + $GITHUB_REF
+          $tag = $GITHUB_REF.Substring('refs/tags/'.Length)
           echo "::debug:: tag: $tag"
           $moduleName = $tag.Substring(15, $tag.LastIndexOf('/') - 15)
           echo "::debug:: moduleName: $moduleName"
