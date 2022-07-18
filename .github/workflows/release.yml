@@ -6,7 +6,7 @@ on:
       - 'release/**/*'
 
 jobs:
-  build:
+  setup:
     name: Create Release
     runs-on: self-hosted
     outputs:
@@ -44,19 +44,19 @@ jobs:
   framework-desktop: 
     # SDKスタイルの方だけを対象にする。
     # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
-    needs: build
-    if: ${{ needs.build.outputs.moduleType }} == 'framework-desktop' 
+    needs: setup
+    if: ${{ needs.setup.outputs.moduleType }} == 'framework-desktop' 
     uses: ./.github/workflows/framework-desktop.yml
     with:
-      modules: ${{ needs.build.outputs.module }} + '.env'
+      modules: ${{ needs.setup.outputs.module }} + '.env'
       isPublish : false
     secrets: inherit
 
   dotnet-desktop: 
-    needs: build
-    if: ${{ needs.build.outputs.moduleType }} == 'dotnet-desktop'
+    needs: setup
+    if: ${{ needs.setup.outputs.moduleType }} == 'dotnet-desktop'
     uses: ./.github/workflows/dotnet-desktop.yml
     with:
-      modules: ${{ needs.build.outputs.module }} + '.env'
+      modules: ${{ needs.setup.outputs.module }} + '.env'
       isPublish : false
     secrets: inherit
