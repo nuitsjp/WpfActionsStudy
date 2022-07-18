@@ -22,10 +22,14 @@ jobs:
           Write-Host $source
           $tag = $source.Substring('refs/tags/'.Length)
           Write-Host $tag
-          # $comment = (git tag -n | Where-Object { $_.StartsWith("$tag ") }).Substring($tag.Length + 1)
-          # Write-Host $comment
-          $moduleName = $tag.Substring(15, $tag.LastIndexOf('/') - 15)
-          Write-Host $moduleName
-          $version = $tag.Substring($tag.LastIndexOf('/') + 1)
+          $temp = $tag.Substring($tag.IndexOf("/") + 1)
+          $moduleType = $temp.Substring(0, $temp.IndexOf("/"))
+          Write-Host $moduleType
+
+          $temp = $temp.Substring($temp.IndexOf("/") + 1)
+          $module = $temp.Substring(0, $temp.IndexOf("/"))
+          Write-Host $module
+
+          $version = $temp.Substring($temp.IndexOf("/") + 1)
           Write-Host $version
         shell: pwsh
