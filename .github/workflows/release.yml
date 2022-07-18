@@ -5,8 +5,6 @@ on:
     tags:
       - 'release/*'
 
-name: Create Release
-
 jobs:
   build:
     name: Create Release
