@@ -52,16 +52,18 @@ jobs:
     # SDKスタイルの方だけを対象にする。
     # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
     needs: setup
+    if: ${{ needs.setup.outputs.framework-desktops }} != ''
     uses: ./.github/workflows/framework-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.framework-desktops) }}
-      isPublish : false
+      isPublish : true
     secrets: inherit
 
   dotnet-desktop: 
     needs: setup
+    if: ${{ needs.setup.outputs.dotnet-desktops }} != ''
     uses: ./.github/workflows/dotnet-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.dotnet-desktops) }}
-      isPublish : false
+      isPublish : true
     secrets: inherit
