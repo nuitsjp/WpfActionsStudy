@@ -9,6 +9,10 @@ jobs:
   build:
     name: Create Release
     runs-on: self-hosted
+    outputs:
+      moduleType: ${{ steps.config.outputs.moduleType }}
+      module: ${{ steps.config.outputs.module }}
+      version: ${{ steps.config.outputs.version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -41,18 +45,18 @@ jobs:
     # SDKスタイルの方だけを対象にする。
     # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
     needs: setup
-    if: ${{ jobs.config.outputs.moduleType }} == 'framework-desktop' 
+    if: ${{ needs.build.outputs.moduleType }} == 'framework-desktop' 
     uses: ./.github/workflows/framework-desktop.yml
     with:
-      modules: ${{ jobs.config.outputs.module }} + '.env'
+      modules: ${{ needs.build.outputs.module }} + '.env'
       isPublish : false
     secrets: inherit
 
   dotnet-desktop: 
     needs: setup
-    if: ${{ jobs.config.outputs.moduleType }} == 'dotnet-desktop'
+    if: ${{ needs.build.outputs.moduleType }} == 'dotnet-desktop'
     uses: ./.github/workflows/dotnet-desktop.yml
     with:
-      modules: ${{ steps.config.outputs.module }} + '.env'
+      modules: ${{ needs.build.outputs.module }} + '.env'
       isPublish : false
     secrets: inherit
