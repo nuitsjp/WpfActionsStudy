@@ -18,6 +18,14 @@ jobs:
       - name: Get the version
         id: get_version
         run: |
-          # echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-          Write-Host $Env:GITHUB_REF
+          $source = $Env:GITHUB_REF
+          Write-Host $source
+          $tag = $source.Substring('refs/tags/'.Length)
+          Write-Host $tag
+          # $comment = (git tag -n | Where-Object { $_.StartsWith("$tag ") }).Substring($tag.Length + 1)
+          # Write-Host $comment
+          $moduleName = $tag.Substring(15, $tag.LastIndexOf('/') - 15)
+          Write-Host $moduleName
+          $version = $tag.Substring($tag.LastIndexOf('/') + 1)
+          Write-Host $version
         shell: pwsh
