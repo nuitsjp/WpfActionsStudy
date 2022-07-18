@@ -65,5 +65,6 @@ jobs:
     uses: ./.github/workflows/dotnet-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.dotnet-desktops) }}
+      version: ${{ fromJson(needs.setup.outputs.version) }}
       isPublish : true
     secrets: inherit
