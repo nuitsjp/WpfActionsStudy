@@ -1,32 +1,20 @@
-name: モジュールリリース
-
 on:
-  create:
+  push:
     tags:
-      - release/*
+      - 'v*'
+
+name: Create Release
 
 jobs:
-  setup:
-    name: Setup release
-    runs-on: self-hosted
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Get the version
         id: get_version
-        run: |
-          echo ::debug::${GITHUB_REF#refs/tags/}
-          echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-
-      - name: Set version
-        shell: pwsh
-        run: |
-          echo ("::debug:: GITHUB_REF: " + $GITHUB_REF + ".")
-          Write-Host ("::debug:: GITHUB_REF: " + $GITHUB_REF)
-          $tag = $GITHUB_REF.Substring('refs/tags/'.Length)
-          echo "::debug:: tag: $tag"
-          $moduleName = $tag.Substring(15, $tag.LastIndexOf('/') - 15)
-          echo "::debug:: moduleName: $moduleName"
-          $version = $tag.Substring($tag.LastIndexOf('/') + 1)
-          echo "::debug:: version: $version"
-
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
