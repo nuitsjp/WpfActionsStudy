@@ -15,8 +15,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get the version
-        id: get_version
+      - name: Setup config
+        id: config
         run: |
           $source = $Env:GITHUB_REF
           Write-Host $source
@@ -32,4 +32,7 @@ jobs:
 
           $version = $temp.Substring($temp.IndexOf("/") + 1)
           Write-Host $version
+          Write-Host "::set-output name=moduleType::$moduleType"
+          Write-Host "::set-output name=module::$module"
+          Write-Host "::set-output name=version::$version"
         shell: pwsh
