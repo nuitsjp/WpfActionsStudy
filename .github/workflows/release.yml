@@ -36,3 +36,23 @@ jobs:
           Write-Host "::set-output name=module::$module"
           Write-Host "::set-output name=version::$version"
         shell: pwsh
+
+  framework-desktop: 
+    # SDKスタイルの方だけを対象にする。
+    # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
+    needs: setup
+    if: ${{ steps.config.outputs.moduleType == 'framework-desktop' }}
+    uses: ./.github/workflows/framework-desktop.yml
+    with:
+      modules: ${{ steps.config.outputs.module + '.env' }}
+      isPublish : false
+    secrets: inherit
+
+  dotnet-desktop: 
+    needs: setup
+    if: ${{ steps.config.outputs.moduleType == 'dotnet-desktop' }}
+    uses: ./.github/workflows/dotnet-desktop.yml
+    with:
+      modules: ${{ steps.config.outputs.module + '.env' }}
+      isPublish : false
+    secrets: inherit
