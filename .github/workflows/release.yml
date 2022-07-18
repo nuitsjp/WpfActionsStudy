@@ -48,24 +48,24 @@ jobs:
           }
         shell: pwsh
 
-  # framework-desktop: 
-  #   # SDKスタイルの方だけを対象にする。
-  #   # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
-  #   needs: setup
-  #   if: ${{ needs.setup.outputs.framework-desktops }} != ''
-  #   uses: ./.github/workflows/framework-desktop.yml
-  #   with:
-  #     modules: ${{ fromJson(needs.setup.outputs.framework-desktops) }}
-      # version: ${{ fromJson(needs.setup.outputs.version) }}
-  #     isPublish : true
-  #   secrets: inherit
-
-  dotnet-desktop: 
+  framework-desktop: 
+    # SDKスタイルの方だけを対象にする。
+    # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
     needs: setup
-    if: ${{ needs.setup.outputs.dotnet-desktops }} != ''
-    uses: ./.github/workflows/dotnet-desktop.yml
+    if: ${{ needs.setup.outputs.framework-desktops }} != ''
+    uses: ./.github/workflows/framework-desktop.yml
     with:
-      modules: ${{ fromJson(needs.setup.outputs.dotnet-desktops) }}
+      modules: ${{ fromJson(needs.setup.outputs.framework-desktops) }}
       version: ${{ needs.setup.outputs.version }}
       isPublish : true
     secrets: inherit
+
+  # dotnet-desktop: 
+  #   needs: setup
+  #   if: ${{ needs.setup.outputs.dotnet-desktops }} != ''
+  #   uses: ./.github/workflows/dotnet-desktop.yml
+  #   with:
+  #     modules: ${{ fromJson(needs.setup.outputs.dotnet-desktops) }}
+  #     version: ${{ needs.setup.outputs.version }}
+  #     isPublish : true
+  #   secrets: inherit
