@@ -6,6 +6,9 @@ on:
       modules:
         required: true
         type: string
+      version:
+        required: true
+        type: string
       isPublish:
         required: true
         type: boolean
