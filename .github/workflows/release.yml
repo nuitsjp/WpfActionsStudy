@@ -52,7 +52,7 @@ jobs:
     # SDKスタイルの方だけを対象にする。
     # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
     needs: setup
-    if: ${{ needs.setup.outputs.framework-desktops }} != ''
+    if: ${{ needs.setup.outputs.framework-desktops != '' }}
     uses: ./.github/workflows/framework-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.framework-desktops) }}
