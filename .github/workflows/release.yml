@@ -10,8 +10,8 @@ jobs:
     name: Create Release
     runs-on: self-hosted
     outputs:
-      moduleType: ${{ steps.config.outputs.moduleType }}
-      module: ${{ steps.config.outputs.module }}
+      framework-desktops: ${{ steps.config.outputs.framework-desktops }}
+      dotnet-desktops: ${{ steps.config.outputs.dotnet-desktops }}
       version: ${{ steps.config.outputs.version }}
     steps:
       - name: Checkout code
