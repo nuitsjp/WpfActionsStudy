@@ -39,12 +39,12 @@ jobs:
           Write-Host "::set-output name=version::$version"
 
           if ($moduleType -eq "framework-desktop") {
-            Write-Host "::set-output name=framework-desktops::`"[\`"$module\`"]`""
+            Write-Host "::set-output name=framework-desktops::`"[\`"$module.env\`"]`""
             Write-Host "::set-output name=dotnet-desktops::`"[]`""
           }
           if ($moduleType -eq "dotnet-desktop") {
             Write-Host "::set-output name=framework-desktops::`"[]`""
-            Write-Host "::set-output name=dotnet-desktops::`"[\`"$module\`"]`""
+            Write-Host "::set-output name=dotnet-desktops::`"[\`"$module.env\`"]`""
           }
         shell: pwsh
 
