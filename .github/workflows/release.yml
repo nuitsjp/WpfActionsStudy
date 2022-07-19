@@ -1,0 +1,71 @@
+name: モジュールリリース
+
+on:
+  push:
+    tags:
+      - 'release/**/*'
+
+jobs:
+  setup:
+    name: Create Release
+    runs-on: self-hosted
+    outputs:
+      framework-desktops: ${{ steps.config.outputs.framework-desktops }}
+      dotnet-desktops: ${{ steps.config.outputs.dotnet-desktops }}
+      version: ${{ steps.config.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup config
+        id: config
+        run: |
+          $source = $Env:GITHUB_REF
+          Write-Host $source
+          $tag = $source.Substring('refs/tags/'.Length)
+          Write-Host $tag
+          $temp = $tag.Substring($tag.IndexOf("/") + 1)
+          $moduleType = $temp.Substring(0, $temp.IndexOf("/"))
+          Write-Host $moduleType
+
+          $temp = $temp.Substring($temp.IndexOf("/") + 1)
+          $module = $temp.Substring(0, $temp.IndexOf("/"))
+          Write-Host $module
+
+          $version = $temp.Substring($temp.IndexOf("/") + 1)
+          Write-Host $version
+          Write-Host "::set-output name=version::$version"
+
+          if ($moduleType -eq "framework-desktop") {
+            Write-Host "::set-output name=framework-desktops::`"[\`"$module.env\`"]`""
+            Write-Host "::set-output name=dotnet-desktops::"
+          }
+          if ($moduleType -eq "dotnet-desktop") {
+            Write-Host "::set-output name=framework-desktops::"
+            Write-Host "::set-output name=dotnet-desktops::`"[\`"$module.env\`"]`""
+          }
+        shell: pwsh
+
+  framework-desktop: 
+    # SDKスタイルの方だけを対象にする。
+    # 実際のプロダクトだと非SDKスタイルを今から採用するメリットがあまりないため、SDKスタイルで統一する前提
+    needs: setup
+    if: ${{ needs.setup.outputs.framework-desktops != '' }}
+    uses: ./.github/workflows/framework-desktop.yml
+    with:
+      modules: ${{ fromJson(needs.setup.outputs.framework-desktops) }}
+      version: ${{ needs.setup.outputs.version }}
+      isPublish : true
+    secrets: inherit
+
+  dotnet-desktop: 
+    needs: setup
+    if: ${{ needs.setup.outputs.dotnet-desktops != '' }}
+    uses: ./.github/workflows/dotnet-desktop.yml
+    with:
+      modules: ${{ fromJson(needs.setup.outputs.dotnet-desktops) }}
+      version: ${{ needs.setup.outputs.version }}
+      isPublish : true
+    secrets: inherit

@@ -32,6 +32,7 @@ jobs:
     uses: ./.github/workflows/framework-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.framework-desktops) }}
+      version: 0.0.1 # 実際にはリリースされないためダミーの固定バージョンを指定する
       isPublish : false
     secrets: inherit
 
@@ -40,5 +41,6 @@ jobs:
     uses: ./.github/workflows/dotnet-desktop.yml
     with:
       modules: ${{ fromJson(needs.setup.outputs.dotnet-desktops) }}
+      version: 0.0.1 # 実際にはリリースされないためダミーの固定バージョンを指定する
       isPublish : false
     secrets: inherit

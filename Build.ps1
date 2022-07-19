@@ -1,18 +1,24 @@
+git add .
+git commit -m 'update'
+git push
+# $tag = "release/dotnet-desktop/DotnetWpfApp/0.0.1"
+$tag = "release/framework-desktop/FrameworkSdkStyleWpfApp/0.0.1"
+git push origin ":$tag"
+git tag -d $tag
+git tag $tag
+git push --tags
 
+# $temp = $tag.Substring($tag.IndexOf("/") + 1)
+# # Write-Host $temp
 
-$Solution_Name = "Source\FramwworkWpfApp\FramwworkWpfApp.sln"
-$Wap_Project_Path = "Source\FramwworkWpfApp\FramwworkWpfApp.Package\FramwworkWpfApp.Package.wapproj"
-$Appx_Package_Build_Mode = "StoreUpload"
-$Configuration = "Release"
-$Appx_Bundle = "Always"
-$Appx_Bundle_Platforms = "x86|x64"
-$GitHubActionsWorkflow = "Source\FramwworkWpfApp\FramwworkWpfApp.Package\FramwworkWpfApp.Package_TemporaryKey.pfx"
+# $moduleType = $temp.Substring(0, $temp.IndexOf("/"))
+# Write-Host $moduleType
 
-msbuild $Solution_Name /t:Restore /p:Configuration=$Configuration
-msbuild `
-	$Wap_Project_Path `
-	/p:Configuration=$Configuration `
-	/p:UapAppxPackageBuildMode=$Appx_Package_Build_Mode `
-	/p:AppxBundle=$Appx_Bundle `
-	/p:PackageCertificateKeyFile=$GitHubActionsWorkflow `
-	/p:PackageCertificatePassword="karYwH@%4g#q9J" `
+# $temp = $temp.Substring($temp.IndexOf("/") + 1)
+# # Write-Host $temp
+
+# $module = $temp.Substring(0, $temp.IndexOf("/"))
+# Write-Host $module
+
+# $version = $temp.Substring($temp.IndexOf("/") + 1)
+# Write-Host $version
