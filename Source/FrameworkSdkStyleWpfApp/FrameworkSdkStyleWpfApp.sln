@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkSdkStyleWpfApp", "FrameworkSdkStyleWpfApp\FrameworkSdkStyleWpfApp.csproj", "{87082661-4C14-46FC-A448-DB127D7CEE90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkSdkStyleWpfApp", "FrameworkSdkStyleWpfApp\FrameworkSdkStyleWpfApp.csproj", "{87082661-4C14-46FC-A448-DB127D7CEE90}"
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "FrameworkSdkStyleWpfApp.Package", "FrameworkSdkStyleWpfApp.Package\FrameworkSdkStyleWpfApp.Package.wapproj", "{8A6B2914-3CAA-4B0A-B3B9-6F077D831B97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scenario", "FrameworkSdkStyleWpfApp.Test\Scenario\Scenario.csproj", "{A62CE5B0-D114-465B-B5EA-533C47434668}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenario", "FrameworkSdkStyleWpfApp.Test\Scenario\Scenario.csproj", "{A62CE5B0-D114-465B-B5EA-533C47434668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Driver", "FrameworkSdkStyleWpfApp.Test\Driver\Driver.csproj", "{0A14627B-50F3-4B6A-8159-29C1BF499FA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Driver", "FrameworkSdkStyleWpfApp.Test\Driver\Driver.csproj", "{0A14627B-50F3-4B6A-8159-29C1BF499FA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Driver.InTarget", "FrameworkSdkStyleWpfApp.Test\Driver.InTarget\Driver.InTarget.csproj", "{FA90CF47-06A8-4595-932C-3D4EC90A1F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Driver.InTarget", "FrameworkSdkStyleWpfApp.Test\Driver.InTarget\Driver.InTarget.csproj", "{FA90CF47-06A8-4595-932C-3D4EC90A1F05}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworkSdkStyleWpfApp.Test", "FrameworkSdkStyleWpfApp.Test", "{47C345B3-C27F-4091-A169-86BE8D559FDB}"
 EndProject

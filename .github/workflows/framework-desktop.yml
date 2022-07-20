@@ -6,6 +6,9 @@ on:
       modules:
         required: true
         type: string
+      version:
+        required: true
+        type: string
       isPublish:
         required: true
         type: boolean
@@ -63,18 +66,20 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:Solution /t:Restore /p:Configuration=$env:Configuration /p:RestorePackagesConfig=true
-      env:
-        Configuration: Release
+      run: msbuild $env:Solution /t:Restore 
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:PackageProject /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
-      env:
-        Appx_Bundle: Always
-        Appx_Bundle_Platforms: x86|x64
-        Appx_Package_Build_Mode: StoreUpload
-        Configuration: Release
+      run: >
+        msbuild $env:Solution 
+        /p:AppxBundle=Always
+        /p:AppxBundlePlatforms='x64'
+        /p:UapAppxPackageBuildMode='StoreUpload'
+        /p:Configuration='Release'
+        /p:Platform='x64'
+        /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx 
+        /p:PackageCertificatePassword='${{ secrets.Pfx_Key }}' 
+        /p:Version=${{ inputs.version }}
 
     # Remove the pfx
     - name: Remove the pfx
